@@ -1,0 +1,92 @@
+/* 기본 사이드바 스타일 */
+.sidebar {
+  position: fixed; /* 🔥 왼쪽에 고정 */
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100vh;
+  background-color: #2c3e50;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  transition: width 0.3s;
+  z-index: 1000; /* 항상 위에 표시 */
+  overflow-x: hidden;
+}
+.logo {
+  font-size: 1.6rem; /* 글씨 크기 키움 */
+  font-weight: 600; /* 굵은 글씨 */
+  margin-bottom: 40px; /* 🔥 Home 버튼과 간격을 넓힘 */
+}
+
+.sidebar.closed {
+  width: 1px;
+}
+
+/* 사이드바 버튼 */
+/* 🔥 사이드바 닫기 버튼 스타일 수정 */
+/* 🔥 사이드바 닫기 버튼 스타일 수정 */
+.toggle-btn {
+  position: absolute;
+  top: 30px; /* "RESUME TRACKER" 텍스트 높이에 맞춤 */
+  right: 5px; /* 사이드바의 오른쪽 끝에서 10px 떨어짐 */
+  border: none;
+  color: white;
+  background: none; /* 🔥 배경색 제거 */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000; /* 항상 위에 표시 */
+  font-size: 1.5rem; /* 화살표 아이콘 크기 */
+  transition: all 0.3s;
+}
+
+/* 🔍 버튼 호버 시 살짝 강조 효과 */
+.toggle-btn:hover {
+  color: #1abc9c; /* 초록색 강조 */
+}
+
+/* 메뉴 아이템 */
+.sidebar ul {
+  list-style: bold;
+  size: 20px;
+  padding: 0;
+}
+
+.sidebar li {
+  margin: 20px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #ecf0f1;
+  transition: color 0.3s;
+}
+
+.sidebar li .icon {
+  margin-right: 10px;
+  font-size: 1.2em;
+}
+
+.sidebar li.active,
+.sidebar li:hover {
+  color: #1abc9c;
+}
+
+/* 사이드바가 접혀 있을 때 */
+.sidebar.closed .menu-items {
+  opacity: 0;
+}
+
+.sidebar.closed .icon {
+  margin-right: 0;
+}
+
+.sidebar.closed ul {
+  align-items: center;
+}
+
+.sidebar.closed li span {
+  display: none;
+}

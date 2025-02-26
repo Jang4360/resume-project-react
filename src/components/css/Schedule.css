@@ -1,0 +1,131 @@
+/* 📌 전체 컨테이너 */
+.schedule-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* 📌 일정 추가 박스 */
+.schedule-box {
+  position: relative; /* 내부 절대 위치 요소(X 버튼)를 감싸기 위해 relative 설정 */
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 500px;
+  /* margin: 0 auto; */
+}
+
+/* 📌 제목 스타일 */
+.schedule-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #2f80ed;
+  padding-bottom: 10px;
+}
+
+/* 📌 입력 필드 */
+.schedule-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.schedule-field label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.schedule-field input,
+.schedule-field select {
+  width: 60%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* 📌 날짜 선택 */
+.date-picker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 60%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* 📌 캘린더 아이콘 */
+.calendar-icon {
+  font-size: 1.2rem;
+  color: #666;
+  cursor: pointer;
+  position: relative; /* 부모 요소를 기준으로 이동 가능 */
+  transform: translateY(-5px) !important; /* Y축으로 20px 아래로 이동 */
+}
+
+/* 📌 생성 버튼 */
+.create-btn {
+  width: 100%;
+  padding: 10px;
+  background: #2f80ed;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.create-btn:hover {
+  background: #1c6fd5;
+}
+
+/* 📌 캘린더 컨테이너 */
+.calendar-container {
+  position: absolute;
+  background: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000;
+  width: fit-content;
+  margin: 20px auto;
+  top: 220px !important;
+}
+
+/* ❌ X 버튼 스타일 */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px; /* 일정 추가 박스 안에서 오른쪽 상단에 위치 */
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+.calendar-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #666;
+  cursor: pointer;
+}
+.calendar-close-btn:hover {
+  color: #000;
+}

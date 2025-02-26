@@ -1,0 +1,67 @@
+/* src/components/css/User.css */
+
+.user-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* 메인 콘텐츠 스타일 */
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+}
+
+.account-card {
+  width: 350px; /* 스케줄 작성 폼과 동일한 너비 */
+  height: 400px; /* 스케줄 작성 폼과 동일한 높이 */
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 세로 중앙 정렬 */
+  align-items: center; /* 가로 중앙 정렬 추가 */
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.user-info p {
+  margin: 10px 0;
+  font-size: 1.1em;
+}
+
+strong {
+  color: #34495e;
+}
+
+/* 로그아웃 버튼 스타일 */
+.logout-btn {
+  width: 200px; /* 버튼 너비 고정 */
+  margin-top: 20px;
+  padding: 10px 0; /* 세로 여백만 설정하여 높이 일정하게 */
+  border: none;
+  border-radius: 5px;
+  background-color: #e74c3c;
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logout-btn .icon {
+  margin-right: 8px;
+}
+
+.logout-btn:hover {
+  background-color: #c0392b;
+}
