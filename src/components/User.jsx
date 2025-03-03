@@ -25,12 +25,15 @@ const User = () => {
       }
 
       try {
-        const response = await axios.get("http://localhost:8080/users/info", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await axios.get(
+          "http://43.203.173.187:8080/users/info",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         setUserName(response.data.name || "이름 없음");
         setUserEmail(response.data.email || "이메일 없음");

@@ -27,11 +27,14 @@ const Membership = () => {
     }
 
     try {
-      const response = await axios.post("/users/join", {
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-      });
+      const response = await axios.post(
+        "http://43.203.173.187:8080/users/join",
+        {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        }
+      );
 
       if (response.status === 200) {
         alert("회원가입이 완료되었습니다.");

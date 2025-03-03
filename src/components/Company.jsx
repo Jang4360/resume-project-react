@@ -35,7 +35,7 @@ const Company = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        "http://localhost:8080/applications/all",
+        "http://3.36.125.14:8080/applications/all",
         {
           headers: {
             Authorization: `Bearer ${token}`, // ✅ 인증 헤더 추가
@@ -67,12 +67,16 @@ const Company = () => {
         acceptanceDate: formatToISOString(selectedSchedule.acceptanceDate),
       };
 
-      await axios.put("http://localhost:8080/applications/update", payload, {
-        headers: {
-          Authorization: `Bearer ${token}`, // ✅ 인증 헤더 추가
-          "Content-Type": "application/json",
-        },
-      });
+      await axios.put(
+        "http://43.203.173.187:8080/applications/update",
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // ✅ 인증 헤더 추가
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       fetchSchedules(); // 저장 후 다시 데이터 불러오기
       setSelectedSchedule(null);
@@ -90,7 +94,7 @@ const Company = () => {
     try {
       const token = localStorage.getItem("token");
 
-      await axios.delete(`http://localhost:8080/applications/${id}`, {
+      await axios.delete(`http://43.203.173.187:8080/applications/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`, // ✅ 인증 헤더 추가
           "Content-Type": "application/json",

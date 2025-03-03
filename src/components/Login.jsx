@@ -21,7 +21,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/login",
+        "http://43.203.173.187:8080/login",
         loginData,
         {
           headers: {

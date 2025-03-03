@@ -60,7 +60,7 @@ const Home = () => {
 
       // 사용자의 일정만 조회
       const response = await axios.get(
-        `http://localhost:8080/applications/user/${userId}`,
+        `http://43.203.173.187:8080/applications/user/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -203,7 +203,7 @@ const Home = () => {
       console.log("저장 요청 데이터:", payload); // 디버깅 로그
 
       await axios.put(
-        "http://localhost:8080/applications/updateStatus",
+        "http://43.203.173.187:8080/applications/updateStatus",
         payload,
         {
           headers: {
