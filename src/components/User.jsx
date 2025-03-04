@@ -26,7 +26,7 @@ const User = () => {
 
       try {
         const response = await axios.get(
-          "http://43.203.173.187:8080/users/info",
+          "https://13.124.26.115:8080/users/info",
           {
             headers: {
               Authorization: `Bearer ${token}`,

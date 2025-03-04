@@ -35,7 +35,7 @@ const Company = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        "http://3.36.125.14:8080/applications/all",
+        "https://13.124.26.115:8080/applications/all",
         {
           headers: {
             Authorization: `Bearer ${token}`, // ✅ 인증 헤더 추가
@@ -68,7 +68,7 @@ const Company = () => {
       };
 
       await axios.put(
-        "http://43.203.173.187:8080/applications/update",
+        "https://13.124.26.115:8080/applications/update",
         payload,
         {
           headers: {
@@ -94,7 +94,7 @@ const Company = () => {
     try {
       const token = localStorage.getItem("token");
 
-      await axios.delete(`http://43.203.173.187:8080/applications/${id}`, {
+      await axios.delete(`https://13.124.26.115:8080/applications/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`, // ✅ 인증 헤더 추가
           "Content-Type": "application/json",

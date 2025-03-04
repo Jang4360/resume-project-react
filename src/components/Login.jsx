@@ -21,7 +21,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://43.203.173.187:8080/login",
+        "https://13.124.26.115:8080/login",
         loginData,
         {
           headers: {

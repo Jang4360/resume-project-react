@@ -28,7 +28,7 @@ const Membership = () => {
 
     try {
       const response = await axios.post(
-        "http://43.203.173.187:8080/users/join",
+        "https://13.124.26.115:8080/users/join",
         {
           name: formData.name,
           email: formData.email,

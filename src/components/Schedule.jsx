@@ -79,7 +79,7 @@ const Schedule = () => {
       }
 
       const response = await axios.post(
-        "http://43.203.173.187:8080/applications/save",
+        "https://43.203.173.187:8080/applications/save",
         {
           companyName: schedule.company,
           submissionDate: schedule.documentDate,
