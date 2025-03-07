@@ -1,0 +1,39 @@
+name: Deploy React (Vite) with Docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Build Frontend Docker Image
+        run: |
+          npm install
+          npm run build
+          docker build -t my-vite-app .
+          docker save my-vite-app | gzip > my-vite-app.tar.gz
+
+      - name: Copy to EC2
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          source: "my-vite-app.tar.gz"
+          target: "~/"
+
+      - name: Deploy on EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          script: |
+            docker load < my-vite-app.tar.gz
+            docker run -d -p 80:80 my-vite-app
