@@ -21,7 +21,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "https://13.124.26.115:8080/login",
+        "https://api.gasdg.store/api/login",
         loginData,
         {
           headers: {

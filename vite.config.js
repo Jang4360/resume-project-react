@@ -3,18 +3,14 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
+  base: "/",
   plugins: [react()],
   server: {
     proxy: {
-      "/applications": {
-        target: "http://localhost:8080",
+      "/api": {
+        target: "https://api.gasdg.store",
         changeOrigin: true,
-        secure: false,
-      },
-      "/users": {
-        target: "http://localhost:8080",
-        changeOrigin: true,
-        secure: false,
+        secure: true, // 🔹 HTTPS 사용해야 함
       },
     },
   },

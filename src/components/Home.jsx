@@ -60,7 +60,7 @@ const Home = () => {
 
       // 사용자의 일정만 조회
       const response = await axios.get(
-        `https://13.124.26.115:8080/applications/user/${userId}`,
+        `https://api.gasdg.store/api/applications/user/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -203,7 +203,7 @@ const Home = () => {
       console.log("저장 요청 데이터:", payload); // 디버깅 로그
 
       await axios.put(
-        "https://13.124.26.115:8080/applications/updateStatus",
+        "https://api.gasdg.store/api/applications/updateStatus",
         payload,
         {
           headers: {

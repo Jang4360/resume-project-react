@@ -28,7 +28,7 @@ const Membership = () => {
 
     try {
       const response = await axios.post(
-        "https://13.124.26.115:8080/users/join",
+        "https://api.gasdg.store/api/users/join",
         {
           name: formData.name,
           email: formData.email,

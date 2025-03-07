@@ -4,7 +4,7 @@ import "./App.css";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import Schedule from "./components/Schedule";
-import Company from "./components/company";
+import Company from "./components/Company";
 import Membership from "./components/Membership";
 import User from "./components/User";
 
