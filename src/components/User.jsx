@@ -23,7 +23,6 @@ const User = () => {
         navigate("/login");
         return;
       }
-
       try {
         const response = await axios.get(
           "https://api.gasdg.store/api/users/info",
