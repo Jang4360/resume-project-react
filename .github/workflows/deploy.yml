@@ -35,5 +35,5 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
-            docker load < my-vite-app.tar.gz
-            docker run -d -p 80:80 my-vite-app
+            sudo docker load < my-vite-app.tar.gz
+            sudo docker run -d -p 80:80 my-vite-app
