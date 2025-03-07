@@ -35,5 +35,13 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
+            # 기존 컨테이너 중지 및 삭제 (포트 충돌 방지)
+            sudo docker stop my-vite-app || true
+            sudo docker rm my-vite-app || true
+
+            # 기존 이미지 삭제 (중복 방지)
+            sudo docker rmi my-vite-app || true
+
+            # 새로운 Docker 이미지 로드 및 실행
             sudo docker load < my-vite-app.tar.gz
-            sudo docker run -d -p 80:80 my-vite-app
+            sudo docker run -d --name my-vite-app -p 80:80 my-vite-app
