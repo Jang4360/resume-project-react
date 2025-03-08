@@ -16,7 +16,7 @@ jobs:
         run: |
           npm install
           npm run build
-          docker build -t my-vite-app .
+          docker build --build-arg VITE_API_BASE_URL=https://api.gasdg.store -t my-vite-app .
           docker save my-vite-app | gzip > my-vite-app.tar.gz
 
       - name: Copy to EC2
@@ -35,16 +35,9 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
-            # 기존 80번 포트를 점유한 컨테이너 강제 종료 및 삭제
-            sudo fuser -k 80/tcp || true
-
-            # 실행 중인 모든 컨테이너 목록 확인 후 삭제
-            for container in $(sudo docker ps -aq); do
-              sudo docker stop $container || true
-              sudo docker rm $container || true
-            done
-
-            # 사용 중이지 않은 Docker 이미지 삭제
+            # 기존 컨테이너 정리
+            sudo docker stop my-vite-app || true
+            sudo docker rm my-vite-app || true
             sudo docker image prune -af || true
 
             # 새로운 Docker 이미지 로드 및 실행
