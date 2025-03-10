@@ -29,14 +29,10 @@ jobs:
       - name: npm install
         run: npm install
 
-      # 단위테스트 (추후 진행)
-      #- name: 단위테스트
-      #  run: npm test
-
-      - name: npm run build
+      - name: npm run build (Vite)
         run: |
           npm run build
-          ls ./build
+          ls -al ./dist  # dist 폴더가 생성되었는지 확인
 
       # build EC2 업로드
       - name: EC2에 빌드된 파일/폴더 업로드
@@ -45,5 +41,19 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
-          source: "./build/*"
+          source: "./dist/*" # 기존 build → dist 변경
           target: "/home/ubuntu/client"
+
+      - name: SSH로 EC2에 접속 후 서버 재시작
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          script_stop: true
+          script: |
+            sudo rm -rf /var/www/html/*
+            sudo mv /home/ubuntu/client/* /var/www/html/  # 기존 build → client로 변경
+            sudo systemctl restart nginx
+            sudo rm -rf /home/ubuntu/client
+            ls -al /var/www/html  # 배포된 파일 확인
