@@ -1,45 +1,49 @@
-name: Deploy React (Vite) with Docker
+name: React CI/CD
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build:
+  react-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+      - name: Checkout Repository Resources
+        uses: actions/checkout@v2
 
-      - name: Build Frontend Docker Image
+      - name: .env 환경 변수 동적 생성
         run: |
-          npm install
-          npm run build
-          docker build --build-arg VITE_API_BASE_URL=https://api.gasdg.store -t my-vite-app .
-          docker save my-vite-app | gzip > my-vite-app.tar.gz
+          echo "${{ secrets.CLIENT_ENV }}" > .env
+          pwd
+          ls -al
 
-      - name: Copy to EC2
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ubuntu
-          key: ${{ secrets.EC2_PRIVATE_KEY }}
-          source: "my-vite-app.tar.gz"
-          target: "~/"
+          - name: nodejs install
+            uses: actions/setup-node@v2
+            with:
+              node-version: '22'
 
-      - name: Deploy on EC2
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ubuntu
-          key: ${{ secrets.EC2_PRIVATE_KEY }}
-          script: |
-            # 기존 컨테이너 정리
-            sudo docker stop my-vite-app || true
-            sudo docker rm my-vite-app || true
-            sudo docker image prune -af || true
+          - name: npm install
+            run: npm install
 
-            # 새로운 Docker 이미지 로드 및 실행
-            sudo docker load < my-vite-app.tar.gz
-            sudo docker run -d --name my-vite-app -p 80:80 my-vite-app
+          # 단위테스트 (추후 진행)
+          #- name: 단위테스트
+          #  run: npm test
+
+          - name: npm run build
+            run: |
+              npm run build
+              ls ./build
+              
+          # build EC2 업로드
+          - name: EC2에 빌드된 파일/폴더 업로드
+            uses: appleboy/scp-action@v0.1.7
+            with:
+              host: ${{ secrets.EC2_HOST }}
+              username: ${{ secrets.EC2_USER }}
+              key: ${{ secrets.EC2_KEY }}
+              source: "./build/*"
+              target: "/home/ubuntu/client"
