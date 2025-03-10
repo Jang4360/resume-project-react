@@ -21,29 +21,29 @@ jobs:
           pwd
           ls -al
 
-          - name: nodejs install
-            uses: actions/setup-node@v2
-            with:
-              node-version: '22'
+      - name: nodejs install
+        uses: actions/setup-node@v2
+        with:
+          node-version: "22"
 
-          - name: npm install
-            run: npm install
+      - name: npm install
+        run: npm install
 
-          # 단위테스트 (추후 진행)
-          #- name: 단위테스트
-          #  run: npm test
+      # 단위테스트 (추후 진행)
+      #- name: 단위테스트
+      #  run: npm test
 
-          - name: npm run build
-            run: |
-              npm run build
-              ls ./build
-              
-          # build EC2 업로드
-          - name: EC2에 빌드된 파일/폴더 업로드
-            uses: appleboy/scp-action@v0.1.7
-            with:
-              host: ${{ secrets.EC2_HOST }}
-              username: ${{ secrets.EC2_USER }}
-              key: ${{ secrets.EC2_KEY }}
-              source: "./build/*"
-              target: "/home/ubuntu/client"
+      - name: npm run build
+        run: |
+          npm run build
+          ls ./build
+
+      # build EC2 업로드
+      - name: EC2에 빌드된 파일/폴더 업로드
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          source: "./build/*"
+          target: "/home/ubuntu/client"
