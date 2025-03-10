@@ -34,7 +34,6 @@ jobs:
           npm run build
           ls -al ./dist  # dist 폴더가 생성되었는지 확인
 
-      # build EC2 업로드
       - name: EC2에 빌드된 파일/폴더 업로드
         uses: appleboy/scp-action@v0.1.7
         with:
