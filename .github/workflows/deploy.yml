@@ -52,7 +52,7 @@ jobs:
           script_stop: true
           script: |
             sudo rm -rf /var/www/html/*
-            sudo mv /home/ubuntu/client/* /var/www/html/  # 기존 build → client로 변경
+            sudo mv /home/ubuntu/client/* /var/www/html/  
             sudo systemctl restart nginx
             sudo rm -rf /home/ubuntu/client
             ls -al /var/www/html  # 배포된 파일 확인
