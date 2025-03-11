@@ -15,7 +15,7 @@ import axios from "axios"; // Axios 추가
 import "./css/Company.css";
 import "./css/Sidebar.css";
 import Sidebar from "./Sidebar";
-
+// axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 const Company = () => {
   const navigate = useNavigate();
   const [schedules, setSchedules] = useState([]);
