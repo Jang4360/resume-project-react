@@ -48,7 +48,6 @@ const Company = () => {
       console.error("Failed to fetch schedules", error);
     }
   };
-
   // 날짜 데이터를 "yyyy-MM-dd" 형식으로 변환
   const formatDate = (dateString) => {
     if (!dateString) return "year / month / day";
