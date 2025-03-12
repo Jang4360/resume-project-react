@@ -10,7 +10,7 @@ export default defineConfig({
       "/api": {
         target: "https://api.gasdg.store",
         changeOrigin: true,
-        secure: true, // 🔹 HTTPS 사용해야 함
+        secure: false, // 🔹 HTTPS 사용해야 함
       },
     },
   },
