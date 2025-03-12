@@ -38,6 +38,10 @@ const Home = () => {
   const fetchSchedules = async () => {
     try {
       const token = localStorage.getItem("token");
+      const API_BASE_URL =
+        import.meta.env.MODE === "development"
+          ? "http://localhost:8080" // 로컬 개발용 API URL
+          : "https://api.gasdg.store";
 
       if (!token) {
         alert("로그인이 필요합니다.");
@@ -60,7 +64,7 @@ const Home = () => {
 
       // 사용자의 일정만 조회
       const response = await axios.get(
-        `https://api.gasdg.store/api/applications/user/${userId}`,
+        `${API_BASE_URL}/api/applications/user/${userId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -194,6 +198,10 @@ const Home = () => {
         navigate("/login");
         return;
       }
+      const API_BASE_URL =
+        import.meta.env.MODE === "development"
+          ? "http://localhost:8080" // 로컬 개발용 API URL
+          : "https://api.gasdg.store";
 
       const payload = {
         applicationId: editedSchedule?.id, // ✅ 올바른 ID 필드명 사용
@@ -203,7 +211,7 @@ const Home = () => {
       console.log("저장 요청 데이터:", payload); // 디버깅 로그
 
       await axios.put(
-        "https://api.gasdg.store/api/applications/updateStatus",
+        `${API_BASE_URL}/api/applications/updateStatus`,
         payload,
         {
           headers: {

@@ -77,9 +77,14 @@ const Schedule = () => {
         navigate("/login");
         return;
       }
+      const API_BASE_URL =
+        import.meta.env.MODE === "development"
+          ? "http://localhost:8080" // 로컬 개발용 API URL
+          : "https://api.gasdg.store";
 
       const response = await axios.post(
-        "https://api.gasdg.store/api/applications/save",
+        `${API_BASE_URL}/api/applications/save`,
+
         {
           companyName: schedule.company,
           submissionDate: schedule.documentDate,

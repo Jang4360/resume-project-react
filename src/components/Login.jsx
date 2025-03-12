@@ -17,11 +17,15 @@ const Login = () => {
       password,
     };
 
+    const API_BASE_URL =
+      import.meta.env.MODE === "development"
+        ? "http://localhost:8080" // 로컬 개발용 API URL
+        : "https://api.gasdg.store";
     console.log("📡 로그인 요청 데이터:", loginData);
 
     try {
       const response = await axios.post(
-        "https://api.gasdg.store/api/login",
+        `${API_BASE_URL}/api/login`,
         loginData,
         {
           headers: {

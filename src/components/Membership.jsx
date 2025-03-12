@@ -19,6 +19,10 @@ const Membership = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+  const API_BASE_URL =
+    import.meta.env.MODE === "development"
+      ? "http://localhost:8080" // 로컬 개발용 API URL
+      : "https://api.gasdg.store";
 
   const handleSubmit = async () => {
     if (formData.password !== formData.confirmPassword) {
@@ -27,14 +31,11 @@ const Membership = () => {
     }
 
     try {
-      const response = await axios.post(
-        "https://api.gasdg.store/api/users/join",
-        {
-          name: formData.name,
-          email: formData.email,
-          password: formData.password,
-        }
-      );
+      const response = await axios.post(`${API_BASE_URL}/api/users/join`, {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+      });
 
       if (response.status === 200) {
         alert("회원가입이 완료되었습니다.");

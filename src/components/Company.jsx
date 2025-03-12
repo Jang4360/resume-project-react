@@ -34,8 +34,14 @@ const Company = () => {
   const fetchSchedules = async () => {
     try {
       const token = localStorage.getItem("token");
+      const API_BASE_URL =
+        import.meta.env.MODE === "development"
+          ? "http://localhost:8080" // 로컬 개발용 API URL
+          : "https://api.gasdg.store";
+
       const response = await axios.get(
-        "https://api.gasdg.store/api/applications/all",
+        `${API_BASE_URL}/api/applications/all`,
+
         {
           headers: {
             Authorization: `Bearer ${token}`, // ✅ 인증 헤더 추가
@@ -65,9 +71,14 @@ const Company = () => {
         interviewDate: formatToISOString(selectedSchedule.interviewDate),
         acceptanceDate: formatToISOString(selectedSchedule.acceptanceDate),
       };
+      const API_BASE_URL =
+        import.meta.env.MODE === "development"
+          ? "http://localhost:8080" // 로컬 개발용 API URL
+          : "https://api.gasdg.store";
 
       await axios.put(
-        "https://api.gasdg.store/api/applications/update",
+        `${API_BASE_URL}/api/applications/update`,
+
         payload,
         {
           headers: {
@@ -92,8 +103,12 @@ const Company = () => {
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem("token");
+      const API_BASE_URL =
+        import.meta.env.MODE === "development"
+          ? "http://localhost:8080" // 로컬 개발용 API URL
+          : "https://api.gasdg.store";
 
-      await axios.delete(`https://api.gasdg.store/api/applications/${id}`, {
+      await axios.delete(`${API_BASE_URL}/api/applications/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`, // ✅ 인증 헤더 추가
           "Content-Type": "application/json",
